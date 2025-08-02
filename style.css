@@ -1,306 +1,283 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
-.header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+#controls-panel {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#teacher-access-section {
+    margin-bottom: 20px;
     text-align: center;
 }
-.main-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-.game-area {
+
+#teacher-access-btn {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    background-color: #e0e0e0;
-    border: 2px dashed #ccc;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
-.controls-container {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    justify-content: flex-start;
-}
-.section-panel {
-    flex: 1;
-    min-width: 250px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-}
-.input-group {
-    margin-bottom: 15px;
-}
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-.input-group input, .input-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.controls-top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-.controls-top button {
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 16px;
     cursor: pointer;
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 5px;
-    color: white;
-    font-weight: bold;
 }
-.mode-btn {
-    background-color: #007bff;
+
+#braille-input-section {
+    margin-bottom: 20px;
 }
-#teacherAccessBtn {
-    background-color: #f44336;
-}
-#uploadImageBtn {
-    background-color: #28a745;
-}
-#createDropzoneBtn {
-    background-color: #17a2b8;
-}
-.braille-area {
-    margin-top: 20px;
-}
-.braille-grid {
+
+#braille-grid {
     display: grid;
-    grid-template-columns: repeat(2, 50px);
-    grid-template-rows: repeat(3, 50px);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    justify-content: center;
-    align-content: center;
-    border: 2px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    width: 100px;
+    margin: 0 auto 15px;
 }
+
 .dot {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: #eee;
-    border: 1px solid #ccc;
+    background-color: #e0e0e0;
     cursor: pointer;
-    transition: background-color 0.1s;
 }
+
 .dot.active {
     background-color: #333;
 }
-.controls-braille {
+
+.button-group {
     display: flex;
     gap: 10px;
-    justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
-#addLetterBtn { background-color: #4CAF50; }
-#clearWordBtn { background-color: #f44336; }
-#createCardBtn { background-color: #008CBA; }
-#current-word {
-    min-height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+.button-group button {
+    flex: 1;
     padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    overflow-x: auto;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
+
+.button-group button:hover {
+    opacity: 0.9;
+}
+
+#current-word-section {
+    margin-bottom: 20px;
+}
+
+#current-word {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-height: 50px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .letter-small {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-}
-.letter-small .braille-letter {
-    display: grid;
-    grid-template-columns: repeat(2, 15px);
-    grid-template-rows: repeat(3, 15px);
-    gap: 4px;
+    background-color: #f9f9f9;
     border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 5px;
+    font-size: 12px;
 }
-.letter-small .braille-dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #eee;
+
+.braille-letter {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    width: 25px;
+    height: 35px;
 }
-.letter-small .braille-dot.filled {
-    background-color: #333;
-}
-.dropzone {
-    position: absolute;
-    min-width: 50px;
-    min-height: 50px;
-    border: 2px dashed #007bff;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #007bff;
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.2);
-    cursor: grab;
-    transition: border-color 0.3s, background-color 0.3s;
-}
-.dropzone-resizer {
-    position: absolute;
+
+.braille-dot {
     width: 10px;
     height: 10px;
-    background: #007bff;
-    border: 1px solid white;
     border-radius: 50%;
-    z-index: 10;
+    background-color: #e0e0e0;
 }
-.dropzone-resizer.resizer-nw { top: -5px; left: -5px; cursor: nw-resize; }
-.dropzone-resizer.resizer-n { top: -5px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
-.dropzone-resizer.resizer-ne { top: -5px; right: -5px; cursor: ne-resize; }
-.dropzone-resizer.resizer-e { top: 50%; right: -5px; transform: translateY(-50%); cursor: e-resize; }
-.dropzone-resizer.resizer-se { bottom: -5px; right: -5px; cursor: se-resize; }
-.dropzone-resizer.resizer-s { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
-.dropzone-resizer.resizer-sw { bottom: -5px; left: -5px; cursor: sw-resize; }
-.dropzone-resizer.resizer-w { top: 50%; left: -5px; transform: translateY(-50%); cursor: w-resize; }
 
-.dropzone.filled {
-    border: none;
-    background-color: transparent;
+.braille-dot.filled {
+    background-color: #333;
 }
-.card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    cursor: grab;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+#game-area-container {
+    flex-grow: 1;
     position: relative;
-    margin: 5px;
-    opacity: 1;
-    transition: opacity 0.3s;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-height: 500px;
 }
-.card:hover {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+#game-area {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px dashed #ccc;
 }
+
+.card {
+    display: inline-block;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 10px;
+    cursor: grab;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
 .card.dragging {
     opacity: 0.5;
     transform: scale(1.05);
 }
-.braille-word {
-    display: flex;
-    gap: 5px;
-}
-.braille-word .braille-letter {
-    display: grid;
-    grid-template-columns: repeat(2, 15px);
-    grid-template-rows: repeat(3, 15px);
-    gap: 4px;
-    border: 1px solid #ccc;
-    padding: 5px;
-}
-.braille-word .braille-dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #eee;
-}
-.braille-word .braille-dot.filled {
-    background-color: #333;
-}
-.delete-btn {
+
+.card .delete-btn {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: #f44336;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+}
+
+.card:hover .delete-btn {
+    display: block;
+}
+
+.braille-word {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+#cards-container {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+}
+
+.dropzone {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #007bff;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.dropzone.filled {
+    border-style: solid;
+    background-color: rgba(0, 123, 255, 0.3);
+}
+
+.dropzone.filled.correct {
+    border-color: green;
+    background-color: rgba(0, 128, 0, 0.2);
+}
+
+.dropzone .delete-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
     color: white;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    text-align: center;
-    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
     cursor: pointer;
-    font-weight: bold;
-    display: none;
 }
-.card:hover .delete-btn, .dropzone:hover .delete-btn {
-    display: block;
+
+.dropzone-resizer {
+    width: 10px;
+    height: 10px;
+    background: #007bff;
+    position: absolute;
+    border: 1px solid white;
 }
-.dropzone.correct {
-    border-color: #4CAF50;
-    background-color: rgba(76, 175, 80, 0.5);
-    cursor: default;
-}
+
+.resizer-se { bottom: -5px; right: -5px; cursor: se-resize; }
+.resizer-sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+.resizer-ne { top: -5px; right: -5px; cursor: ne-resize; }
+.resizer-nw { top: -5px; left: -5px; cursor: nw-resize; }
+.resizer-n { top: -5px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
+.resizer-s { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+.resizer-e { right: -5px; top: 50%; transform: translateY(-50%); cursor: e-resize; }
+.resizer-w { left: -5px; top: 50%; transform: translateY(-50%); cursor: w-resize; }
+
 #message-box {
+    display: none;
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 15px 30px;
+    padding: 15px 25px;
     border-radius: 8px;
     color: white;
     font-weight: bold;
-    display: none;
     z-index: 1000;
 }
-.message-box.success { background-color: #4CAF50; }
-.message-box.error { background-color: #f44336; }
-.message-box.info { background-color: #2196F3; }
-#cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-    border: 1px dashed #ccc;
-    border-radius: 8px;
-    margin-top: 15px;
-    min-height: 100px;
-}
-body.play-mode .hidden-in-play-mode { display: none; }
-body.play-mode .dropzone { border-style: solid; }
-body.play-mode .dropzone-resizer, body.play-mode .delete-btn { display: none; }
 
-#spanish-words-list {
-    margin-top: 15px;
-    min-height: 100px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    white-space: pre-wrap;
-    background-color: #f9f9f9;
-}
-#spanish-words-list:focus {
-    outline: none;
-    border-color: #007bff;
-}
+.message-box.info { background-color: #007bff; }
+.message-box.success { background-color: #28a745; }
+.message-box.error { background-
