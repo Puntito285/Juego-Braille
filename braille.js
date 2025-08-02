@@ -10,7 +10,7 @@ const brailleMap = {
 };
 
 let currentWordLetters = [];
-let currentMode = 'edit';
+let currentMode = 'play';
 let activeDropzone = null;
 let isDraggingDropzone = false;
 let isResizingDropzone = false;
@@ -36,7 +36,6 @@ const teacherAccessBtn = document.getElementById('teacherAccessBtn');
 function initializeBrailleGrid() {
     brailleGrid.innerHTML = '';
     
-    // Este es el orden de los puntos en una celda Braille estándar
     const brailleDotOrder = [1, 4, 2, 5, 3, 6];
     
     brailleDotOrder.forEach(id => {
@@ -50,6 +49,10 @@ function initializeBrailleGrid() {
 
 // Alternar el estado de un punto
 function toggleDot(dot) {
+    if (currentMode === 'play') {
+        showMessage('No puedes modificar la celda Braille en modo Juego.', 'error');
+        return;
+    }
     dot.classList.toggle('active');
 }
 
@@ -65,7 +68,6 @@ function createBrailleCellElement(dots) {
     const brailleLetterElement = document.createElement('div');
     brailleLetterElement.className = 'braille-letter';
     
-    // --- CAMBIO CLAVE: Usa el mismo orden para dibujar que para leer ---
     const brailleDotOrder = [1, 4, 2, 5, 3, 6];
     
     brailleDotOrder.forEach(id => {
@@ -76,7 +78,6 @@ function createBrailleCellElement(dots) {
         }
         brailleLetterElement.appendChild(dot);
     });
-    // ---------------------------------------------------------------------
 
     return brailleLetterElement;
 }
@@ -333,9 +334,11 @@ function showMessage(message, type) {
 
 function setMode(mode) {
     currentMode = mode;
+    const teacherButtons = document.querySelectorAll('.teacher-only');
     if (mode === 'edit') {
         document.body.classList.remove('play-mode');
         showMessage('Modo Edición activado', 'info');
+        teacherButtons.forEach(btn => btn.style.display = 'block');
         document.querySelectorAll('.dropzone').forEach(dz => {
             dz.style.cursor = 'grab';
             dz.classList.remove('filled');
@@ -345,6 +348,7 @@ function setMode(mode) {
     } else {
         document.body.classList.add('play-mode');
         showMessage('Modo Juego activado', 'info');
+        teacherButtons.forEach(btn => btn.style.display = 'none');
         document.querySelectorAll('.dropzone').forEach(dz => {
             dz.style.cursor = 'default';
             dz.querySelectorAll('.dropzone-resizer').forEach(r => r.style.display = 'none');
@@ -353,12 +357,17 @@ function setMode(mode) {
     }
 }
 
+// CAMBIO CLAVE: Agregando la clase 'teacher-only' a los botones de edición
 addLetterBtn.addEventListener('click', addLetterToWord);
+addLetterBtn.classList.add('teacher-only');
 createCardBtn.addEventListener('click', createCard);
+createCardBtn.classList.add('teacher-only');
 clearWordBtn.addEventListener('click', clearWord);
+clearWordBtn.classList.add('teacher-only');
 uploadImageBtn.addEventListener('click', () => {
     backgroundImageInput.click();
 });
+uploadImageBtn.classList.add('teacher-only');
 backgroundImageInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -377,12 +386,17 @@ createDropzoneBtn.addEventListener('click', () => {
     }
     createDropzone(50, 50);
 });
+createDropzoneBtn.classList.add('teacher-only');
 editModeBtn.addEventListener('click', () => setMode('edit'));
+editModeBtn.classList.add('teacher-only');
 playModeBtn.addEventListener('click', () => setMode('play'));
+playModeBtn.classList.add('teacher-only');
+
 teacherAccessBtn.addEventListener('click', () => {
     const password = prompt('Introduce la contraseña para el acceso de maestras:');
     if (password === 'maestra123') {
         showMessage('Acceso de maestras concedido', 'success');
+        setMode('edit');
     } else {
         showMessage('Contraseña incorrecta', 'error');
     }
@@ -390,5 +404,5 @@ teacherAccessBtn.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     initializeBrailleGrid();
-    setMode('edit');
+    setMode('play'); // El juego inicia en modo juego por defecto
 });
