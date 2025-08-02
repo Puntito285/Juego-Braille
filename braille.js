@@ -49,10 +49,6 @@ function initializeBrailleGrid() {
 
 // Alternar el estado de un punto
 function toggleDot(dot) {
-    if (currentMode === 'play') {
-        showMessage('No puedes modificar la celda Braille en modo Juego.', 'error');
-        return;
-    }
     dot.classList.toggle('active');
 }
 
