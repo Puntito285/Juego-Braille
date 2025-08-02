@@ -357,7 +357,6 @@ function setMode(mode) {
     }
 }
 
-// CAMBIO CLAVE: Agregando la clase 'teacher-only' a los botones de edición
 addLetterBtn.addEventListener('click', addLetterToWord);
 addLetterBtn.classList.add('teacher-only');
 createCardBtn.addEventListener('click', createCard);
@@ -404,5 +403,5 @@ teacherAccessBtn.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     initializeBrailleGrid();
-    setMode('play'); // El juego inicia en modo juego por defecto
+    setMode('play');
 });
