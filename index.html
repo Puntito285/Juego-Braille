@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braille Interactivo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Juego Interactivo de Braille</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="game-area" id="game-area"></div>
+        
+        <div class="controls-container">
+            <div class="section-panel">
+                <h3>Detalles de la clase</h3>
+                <div class="input-group">
+                    <label>Nombre del alumno:</label>
+                    <input type="text" id="studentName">
+                </div>
+                <div class="input-group">
+                    <label>Día de clase:</label>
+                    <input type="text" id="classDay">
+                </div>
+                <div class="input-group">
+                    <label>Fecha y hora:</label>
+                    <input type="datetime-local" id="taskDateTime">
+                </div>
+                <div class="controls-top" style="margin-top: auto;">
+                    <button class="mode-btn" id="editModeBtn">Modo Edición</button>
+                    <button class="mode-btn" id="playModeBtn">Modo Juego</button>
+                    <button id="teacherAccessBtn">Acceso Maestras</button>
+                </div>
+            </div>
+            
+            <div class="section-panel hidden-in-play-mode">
+                <h3>Configuración del juego</h3>
+                <div class="input-group">
+                    <label for="background-image-input">Imagen de fondo:</label>
+                    <button id="uploadImageBtn">Subir imagen</button>
+                    <input type="file" id="background-image-input" accept="image/*" style="display: none;">
+                </div>
+                <div class="input-group">
+                    <label>Zonas de arrastre:</label>
+                    <button id="createDropzoneBtn" class="controls-top">Crear Zona Receptora</button>
+                </div>
+                <div style="margin-top: auto;">
+                    <h3>Crea la palabra en Braille</h3>
+                    <div class="braille-area">
+                        <div class="braille-grid" id="braille-grid"></div>
+                        <div class="controls-braille">
+                            <button id="addLetterBtn">Añadir letra</button>
+                            <button id="clearWordBtn">Limpiar</button>
+                        </div>
+                        <h4>Palabra actual:</h4>
+                        <div id="current-word"></div>
+                        <div style="margin-top: 15px;">
+                            <button id="createCardBtn">Crear Tarjeta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-panel">
+                <h3>Tarjetas creadas</h3>
+                <div id="cards-container"></div>
+            </div>
+            
+            <div class="section-panel hidden-in-play-mode">
+                <h3>Crea las siguientes palabras con el código Braille</h3>
+                <textarea id="spanish-words-list" placeholder="Escribe las palabras aquí, una por línea..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div id="message-box"></div>
+    <script src="braille.js"></script>
+</body>
+</html>
