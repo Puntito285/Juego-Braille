@@ -280,4 +280,9 @@ body {
 
 .message-box.info { background-color: #007bff; }
 .message-box.success { background-color: #28a745; }
-.message-box.error { background-
+.message-box.error { background-color: #dc3545; }
+
+/* Nuevo CSS para ocultar los botones de edición */
+.teacher-only {
+    display: none;
+}
